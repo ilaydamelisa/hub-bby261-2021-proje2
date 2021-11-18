@@ -1,0 +1,46 @@
+from tkinter import *
+from random import randint
+
+pencere = Tk()
+pencere.title('Sayısal Loto Arayüzü')
+pencere.geometry("800x600")
+pencere.configure(bg="yellow")
+
+baslik = Label(pencere, text="Hoş Geldiniz")
+baslik.config(font=("Ariel", 13), fg="white", bg="green")
+baslik.grid(row=0, column=5)
+
+
+def sayisal():
+    i = 0
+    secilenler = [0, 0, 0, 0, 0, 0]
+    for rastgele in secilenler:
+        while i < len(secilenler):
+            secilen = randint(1, 49)
+            if secilen not in secilenler:
+                secilenler[i] = secilen
+                i += 1
+        sirali = sorted(secilenler)
+        i = 0
+
+        numaralar = Label(pencere, text=sirali)
+        numaralar.grid(row=0, column=100)
+
+
+goster = Button(pencere, text="Numaraları Göster", command=sayisal, fg="white", bg="green")
+goster.grid(row=1, column=1)
+
+
+def getint():
+    yardim = Label(pencere,
+                   text="Daha ayrıntılı yardım için https://www.millipiyangoonline.com/sayisal-loto/sonuclar linkini ziyaret ediniz")
+    yardim.grid(row=2, column=2)
+
+
+yardim = Button(pencere, text="Yardım", command=getint, fg="white", bg="green")
+yardim.grid(row=2, column=0)
+
+cikis = Button(pencere, text="Çıkış", command=pencere.quit, fg="white", bg="red")
+cikis.grid(row=3, column=0)
+
+pencere.mainloop()
